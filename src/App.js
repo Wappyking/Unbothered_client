@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import PageTitle from "./components/PageTitle";
+import React, { Component } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <>
+        <Router link={Link}>
+          <div>
+            <Routes>
+              <Route exact path="/" element={<Home />}></Route>
+
+              <Route
+                exact
+                path="/about"
+                element={
+                  ((<About />),
+                  (<PageTitle title="Waps Tech Hive - About Us" />))
+                }
+              ></Route>
+              <Route
+                exact
+                path="/contact-us"
+                element={
+                  ((<ContactUs />),
+                  (<PageTitle title="Waps Tech Hive - Contact Us" />))
+                }
+              ></Route>
+            </Routes>
+          </div>
+        </Router>
+      </>
+    );
+  }
 }
-
-export default App;
